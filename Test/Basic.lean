@@ -3,7 +3,8 @@ import Mathlib
 -- Abstract types for quantum setting
 axiom Wavefunc : Type
 axiom Density : Type
-axiom Potential : Type
+-- Potential is a function from space to real numbers
+def Potential : Type := ℝ → ℝ
 
 -- Fundamental operations and functionals
 axiom density_of : Wavefunc → Density
@@ -32,7 +33,9 @@ axiom distinct_potentials_distinct_states (v₁ v₂ : Potential) :
 axiom integral_diff (v₁ v₂ : Potential) (n : Density) :
   integral v₁ n - integral v₂ n = integral (fun x => v₁ x - v₂ x) n
 
-def F (n : Density) : ℝ := sInf { kinetic_interaction ψ | density_of ψ = n }
+-- The universal density functional (must be noncomputable)
+noncomputable def F (n : Density) : ℝ :=
+  sInf (Set.image kinetic_interaction {ψ : Wavefunc | density_of ψ = n})
 
 /- HK1 Theorem: Proof by Contradiction -/
 theorem Hohenberg_Kohn1
@@ -93,5 +96,5 @@ theorem Hohenberg_Kohn1
   have ineq₂' : ground_energy v₁ > ground_energy v₂ + integral v₁ n - integral v₂ n := by
     rw [E₁_expand]; linarith
 
-  -- Add the inequalities to get a contradiction
+  -- Add the inequalities to get a contradiction: E₁ + E₂ > E₁ + E₂
   linarith
