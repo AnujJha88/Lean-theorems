@@ -1,13 +1,8 @@
-# test
+# Setup
 
-## GitHub configuration
+1. Install Lean4 compiler onto your device
+2. If you work in VSCode, install the lean4 extension
+3. run `lake build` after cloning
+4. Use the Infoview provided by the lean4 extension to get detailed states at each step of the proof( F1->lean4: toggle infoview)
 
-To set up your new GitHub repository, follow these steps:
-
-* Under your repository name, click **Settings**.
-* In the **Actions** section of the sidebar, click "General".
-* Check the box **Allow GitHub Actions to create and approve pull requests**.
-* Click the **Pages** section of the settings sidebar.
-* In the **Source** dropdown menu, select "GitHub Actions".
-
-After following the steps above, you can remove this section from the README file.
+Lean theorem proving setup for Hohenberg-Kohn Theorems
